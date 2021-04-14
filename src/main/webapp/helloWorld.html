@@ -1,0 +1,70 @@
+<html>
+<body>
+<form>
+    <input type="text" id="number" placeholder="+923********">
+    <div id="recaptcha-container"></div>
+    <button type="button" onclick="phoneAuth();">SendCode</button>
+</form><br>
+<h1>Enter Verification code</h1>
+<form>
+    <input type="text" id="verificationCode" placeholder="Enter verification code">
+    <button type="button" onclick="codeverify();">Verify code</button>
+
+</form>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+<script  src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+<script  src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+
+<script>
+
+var firebaseConfig2 = {
+    apiKey: "AIzaSyAy0T3LTjx3j8e7PeDSjV8zD9mq4WLlUfk",
+    authDomain: "webdemo-d6681.firebaseapp.com",
+    databaseURL: "https://webdemo-d6681.firebaseio.com",
+    projectId: "webdemo-d6681",
+    storageBucket: "webdemo-d6681.appspot.com",
+    messagingSenderId: "1021526819922",
+    appId: "1:1021526819922:web:66c730f17683681d3e0b8b",
+    measurementId: "G-SJWJ2GWS8H"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig2);
+  
+
+  window.onload=function () {
+  render();
+};
+function render() {
+    window.recaptchaVerifier=new firebase.auth.RecaptchaVerifier('recaptcha-container');
+    recaptchaVerifier.render();
+}
+function phoneAuth() {
+    //get the number
+    var number=document.getElementById('number').value;
+    //phone number authentication function of firebase
+    //it takes two parameter first one is number,,,second one is recaptcha
+    firebase.auth().signInWithPhoneNumber(number,window.recaptchaVerifier).then(function (confirmationResult) {
+        //s is in lowercase
+        window.confirmationResult=confirmationResult;
+        coderesult=confirmationResult;
+        console.log(coderesult);
+        alert("Message sent");
+    }).catch(function (error) {
+        alert(error.message);
+    });
+}
+function codeverify() {
+    var code=document.getElementById('verificationCode').value;
+    coderesult.confirm(code).then(function (result) {
+        alert("Successfully registered");
+        var user=result.user;
+        console.log(user);
+    }).catch(function (error) {
+        alert(error.message);
+    });
+}
+</script>
+
+</body>
+</html>
