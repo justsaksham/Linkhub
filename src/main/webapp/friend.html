@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+hello friends
+<button id="showFriendRequest">show requests</button>
+<button id="showFriends">show friends</button>
+<div class="list" id="AllList">
+<div class="friendRequest" id="friendRequest">
+all requests
+</div>
+<div class="friend" id="friendList">
+all friends
+</div>
+</div>
+</body>
+<style>
+.request , .AllFriend{
+background-color:red;
+}
+</style>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+<script type="text/javascript" src="scripts/friend.js"></script>
+</html>

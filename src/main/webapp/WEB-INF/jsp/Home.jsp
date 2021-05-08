@@ -31,13 +31,19 @@
         <i class="fas fa-bars"></i>
       </label>
       <ul>
-      <li><input type="text" id="inputSearchFriend"/></li>
-       <li><Button id="btnSearchFriend">Search</Button></li>
+      <form action="searchFriend" id="form1">
+      <li>
+      <input type="text" id="inputSearchFriend" name="inputSearchFriend"/>
+	  </li>
+	  </form>
+       <li>
+       <Button id="btnSearchFriend">Search</Button>
+       </li>
        
         <li><a class="active" href="#">Home</a></li>
         <li><a href="storeData.jsp">Store</a></li>
         <li><a href="Search.jsp">Search</a></li>
-        <li><a href="http://www.cnn.com/">Friends</a></li>
+        <li><a href="friend.html">Friends</a></li>
         <li><a href="helloWorld.html">profile</a></li>
         <li><a href="#" id="logout">logout</a></li>
       </ul>

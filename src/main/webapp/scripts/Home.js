@@ -1,7 +1,5 @@
 var inputSearchFriend=document.getElementById("inputSearchFriend");
 var btnSearchFriend=document.getElementById("btnSearchFriend");
-
-
 function include(file) {
   
   var script  = document.createElement('script');
@@ -30,45 +28,47 @@ document.getElementById("logout").onclick=function(){
 }
 
 btnSearchFriend.onclick=function(){
-	let value=inputSearchFriend.value;
-	console.log("search"+value);
-	let userInfo=[];
-	firebase.database().ref('userSearch/'+value).once('value').then((snapshot) => {
-		  var username = snapshot.val() ;
-		  console.log(username);
-		  //console.log(username.lenght);
-		  snapshot.forEach(function(childsnapshot){
-			  let val=childsnapshot.val();
-			  console.log(val);
-			  userInfo.push(val);
-			  console.log(userInfo);
-			 });
-		  fetchUser(userInfo);
-			 
-		});
+	document.getElementById("form1").submit();
+//	let value=inputSearchFriend.value;
+//	console.log("search"+value);
+//	let userInfo=[];
+//	firebase.database().ref('userSearch/'+value).once('value').then((snapshot) => {
+//		  var username = snapshot.val() ;
+//		  console.log(username);
+//		  //console.log(username.lenght);
+//		  snapshot.forEach(function(childsnapshot){
+//			  let val=childsnapshot.val();
+//			  console.log(val);
+//			  userInfo.push(val);
+//			  console.log(userInfo);
+//			 });
+//		  //all the user with same name
+//		  fetchUser(userInfo);
+	//		 
+	//	});
 
 	
 }
 
-function fetchRequiredUser(alluser,userInfo){
-	for(i=0;i<userInfo.length;i++){
-		let userData=userInfo[i].userinfo;
-		console.log(userData);
-		let userId= userData.userId;
-		console.log(userId);
-		console.log(alluser[userId]);
-	}
-}
-function fetchUser(userInfo){
-	for(i=0;i<userInfo.length;i++){
-		let userData=userInfo[i].userinfo;
-		console.log(userData);
-		let userId= userData.userId;
-		firebase.database().ref("/users/"+userId+"/profile").once('value').then(function(snapshot){
-			var alluser=snapshot.val();
-			console.log(alluser);
-			//fetchRequiredUser(alluser,userInfo);
-		});
-	}
-	
-	}
+//function fetchRequiredUser(alluser,userInfo){
+//	for(i=0;i<userInfo.length;i++){
+//		let userData=userInfo[i].userinfo;
+//		console.log(userData);
+//		let userId= userData.userId;
+//		console.log(userId);
+//		console.log(alluser[userId]);
+//	}
+//}
+//function fetchUser(userInfo){
+//	for(i=0;i<userInfo.length;i++){
+//		let userData=userInfo[i].userinfo;
+//		console.log(userData);
+//		let userId= userData.userId;
+//		firebase.database().ref("/users/"+userId+"/profile").once('value').then(function(snapshot){
+//			var alluser=snapshot.val();
+//			console.log(alluser);
+//			//fetchRequiredUser(alluser,userInfo);
+//		});
+//	}
+//	
+//	}
