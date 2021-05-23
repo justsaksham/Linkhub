@@ -19,15 +19,15 @@
 	   <div class="link-div">
       <label for ="Link">Link</label>
       <input type="text" id="link" class="input" name="link" required >
-  
+      <br>
+  	<span id="Lvalid" class="error"></span>
+  </div>
     <div class="">
 		 <label for="type">Type</label>
-    <!-- 
-  <select name="cars" id="typefolders" >
-   </select>
-   -->
     <input list="folders" name="browser" id="typefolders" class="input">
-    
+     <br>
+  	<span id="Fvalid" class="error"></span>
+ 
     <datalist id="folders">
     <option value="Edge">
     <option value="Firefox">
@@ -36,21 +36,21 @@
     <option value="Safari">    
   </datalist>
   </div>
-  <!-- 
-  <input type="checkbox" id="foundType" name="foundType" value="true" checked="checked"><label>found type </label>
-  <br>
-  <label>Create list Type</label><input type="text" name="dataType" id="dataType" disabled="true">
-  <br>
-   -->
-   
   <div class="metadata-div">
     <label>Meta Data</label><input type="text" name="metaData" id="metaData" class="meta-data input"><br>
+     <br>
+  	<span id="Mvalid" class="error"></span>
+ </div>
+ <div class="metadata-div">
     <label>Method Of Storing </label><input type="radio" id="public" class="method" name="mode" value="public" checked><label for="male">public</label>
     <input type="radio" id="private" class="method" name="mode" value="private"><label for="female">private</label>
 	</div>
   <div class="descr-div">
 	<div><label class="desc-label">Discription</label></div>
-	<div><textarea name="comment" id="comment"  class="textarea"></textarea></div>
+	<div><textarea name="comment" id="comment"  class="textarea"></textarea>
+	 <br>
+  	<span id="Cvalid" class="error"></span>
+	</div>
 	</div>
   
  <input type="button" id="btnStoreUserdata" class="btn btn-store" value="Submit">

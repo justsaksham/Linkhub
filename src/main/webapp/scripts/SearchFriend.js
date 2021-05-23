@@ -23,7 +23,8 @@ var firebaseConfig = {
 	function Searchfriend(){
 		let value=inputSearchFriend.value;
 		console.log("search"+value);
-		document.getElementsByClassName("friendList")[0].innerHTML='';
+		document.getElementById("friendList").innerHTML='';
+		document.getElementById("AlreadySentFriendRequestList").innerHTML='';
 		    let userInfo=[];
 		firebase.database().ref('userSearch/'+value).once('value').then((snapshot) => {
 			  var username = snapshot.val() ;
@@ -91,41 +92,104 @@ var firebaseConfig = {
 				if(userId.toString() == SentFriendRequestList[i]){
 					console.log("userId is already in SentFriendRequestList"+" "+userId);
 					console.log("your request already sent and user haven't accept it");
+					displayUserWhomCurrentUserSendRequestAlready(userId);
 					flag3=true;
-					break;
+					//break;
 				}
 			}
 			
 			if(flag1 || flag2 || flag3){
 				continue;
 			}
-//			if(userId.toString() in SentFriendRequestList){
-//				console.log("userId is already in SentFriendRequestList"+" "+userId);
-//				continue;
-//			}
-//			if(userId.toString() in PendingFriendRequestList){
-//				console.log("userId is already in PendingFriendRequestList"+" "+userId);
-//				continue;
-//			}
 			if(userId!=currentUser.uid){
-			firebase.database().ref("/users/"+userId+"/profile").once('value').then(function(snapshot){
-				var alluser=snapshot.val();
-				console.log(alluser);
-				//fetchRequiredUser(alluser,userInfo);
-				//SearchResult.push(alluser);
-				//userIdArray.push(userId);
-				displaySearchResult(alluser,userId);
-			});
+				displaySearchResult(userId);
 			}
 		}
 		
 		}
 	
+	function displayUserWhomCurrentUserSendRequestAlready(userId){
+		let div=CreateTemplateForAlreadySentRequest();
+		database.ref("users/"+userId+"/profile").once('value').then((snapshot)=>{
+			if(snapshot.val()!=null){
+				let value=snapshot.val();
+				let name=value.Name;
+				let email=value.Email;
+				console.log(value);
+				//div.setAttribute('class','AlreadySentRequest');
+				
+				div.getElementsByTagName('Button')[0].setAttribute('id',userId);
+				div.getElementsByTagName('Button')[0].setAttribute('onclick',"revokeRequest(this)");
+				div.getElementsByTagName('Button')[0].innerHTML="REVOKE REQUEST"
+				div.setAttribute("class","AlreadySentRequest"+" "+userId);
+				//div.setAttribute("class",userId);
+				
+				div.getElementsByTagName('p')[0].innerHTML=name;
+				div.getElementsByTagName('p')[1].innerHTML=email;
+				console.log(div.getAttribute('class'))
+				console.log(div);
+			}
+			document.getElementById("AlreadySentFriendRequestList").appendChild(div);
+		});
+		
+	}
+	
+	function CreateTemplateForAlreadySentRequest(){
+		let div=document.createElement('div');
+		let p1=document.createElement('p');
+		let p2=document.createElement('p');
+		let button=document.createElement('Button');
+		div.appendChild(p1);
+		div.appendChild(p2);
+		div.appendChild(button);
+		return div;
+	}
+	
+	function revokeRequest(btn){
+		console.log(btn.getAttribute('id'));
+		let requestId=btn.getAttribute('id');
+		console.log(btn);     
+		database.ref("users/"+currentUser.uid+"/SentFriendRequestList").once('value').then((snapshot)=>{
+			if(snapshot.val()!=null){
+				snapshot.forEach(function(child){
+						let ch=child.val();
+						console.log(ch);
+						if(requestId.toString()===ch.requestUid){
+							database.ref("users/"+currentUser.uid+"/SentFriendRequestList").child(child.key).remove();
+						console.log("hello");
+//						removefromReciever(requestId,currentUser.uid);
+						}
+				});
+				
+			}
+		});
+		removefromReciever(requestId);
+		
+	}
+	function removefromReciever(requestId){
+		database.ref("users/"+requestId+"/PendingFriendRequestList").once('value').then((snapshot)=>{
+			if(snapshot.val()!=null){
+				snapshot.forEach(function(child){
+						let ch=child.val();
+						console.log(ch);
+						console.log(currentUser.uid)
+						
+						if(currentUser.uid===ch.senderUid.toString()){
+							database.ref("users/"+requestId+"/PendingFriendRequestList").child(child.key).remove();
+						console.log("hello");
+						let div=document.getElementsByClassName(requestId)[0];
+						document.getElementById("AlreadySentFriendRequestList").removeChild(div);
+					displaySearchResult(requestId);
+						}
+				});
+			}
+		});
+	}
 	
 	
-	
-	
-	
+	function appendRemovedFriendRequestFriendInRequestList(){
+		
+	}
 	
 	
 	
@@ -152,29 +216,63 @@ var firebaseConfig = {
 	
 	
 	
-	function displaySearchResult(alluser,userId){
-		console.log(userId);
-			let i="<div class=\"friend\" style=\"background-color:powderblue;\" id="
-		+userId+"><p>Name:"+alluser.Name+"</p><button id="
-		+userId+" onclick=\"AddFriend(this)\">Add Friend</button></div>";
-			let j=document.getElementsByClassName("friendList")[0].innerHTML;
-			console.log(j);
-			if(j!=undefined){
-					let k=j+i;
-					console.log(document.getElementsByClassName("friendList")[0]);
-					document.getElementsByClassName("friendList")[0].innerHTML=k;
+	function displaySearchResult(userId){
+//		console.log(userId);
+//			let i="<div class=\"friend\" style=\"background-color:powderblue;\" id="
+//		+userId+"><p>Name:"+alluser.Name+"</p><button id="
+//		+userId+" onclick=\"AddFriend(this)\">Add Friend</button></div>";
+//			let j=document.getElementsByClassName("friendList")[0].innerHTML;
+//			console.log(j);
+//			if(j!=undefined){
+//					let k=j+i;
+//					console.log(document.getElementsByClassName("friendList")[0]);
+//					document.getElementsByClassName("friendList")[0].innerHTML=k;
+//			}
+//			else{
+//	document.getElementsByClassName("friendList")[0].innerHTML=i;
+//	console.log("hello heloo")
+//			}
+//			
+//			
+		let div=CreateTemplateForSendingFriendRequest();
+		database.ref("users/"+userId+"/profile").once('value').then((snapshot)=>{
+			if(snapshot.val()!=null){
+				let value=snapshot.val();
+				let name=value.Name;
+				let email=value.Email;
+				console.log(value);
+				//div.setAttribute('class','AlreadySentRequest');
+				
+				div.getElementsByTagName('Button')[0].setAttribute('id',userId);
+				div.getElementsByTagName('Button')[0].setAttribute('onclick',"AddFriend(this)");
+				div.getElementsByTagName('Button')[0].innerHTML="add Friend"
+				div.setAttribute("class","friend"+" "+userId);
+				//div.setAttribute("class",userId);
+				
+				div.getElementsByTagName('p')[0].innerHTML=name;
+				div.getElementsByTagName('p')[1].innerHTML=email;
+				console.log(div.getAttribute('class'))
+				console.log(div);
 			}
-			else{
-	document.getElementsByClassName("friendList")[0].innerHTML=i;
-	console.log("hello heloo")
-			}	
-}
+			document.getElementById("friendList").appendChild(div);
+		});
+	
 			
+			
+			
+}
+	function CreateTemplateForSendingFriendRequest(){
+		let div=document.createElement('div');
+		let p1=document.createElement('p');
+		let p2=document.createElement('p');
+		let button=document.createElement('Button');
+		div.appendChild(p1);
+		div.appendChild(p2);
+		div.appendChild(button);
+		return div;
+	}
 	
-	
-	
-	
-	
+			
 	
 	try{
 			  firebase.auth().onAuthStateChanged(function(user) {
@@ -226,6 +324,9 @@ function UpdateInSentFriendRequestList(friendUid){
 	set({requestUid:friendUid}).then(function(){
 		console.log("friend request details added in PendingRequestList");
 		SentFriendRequestList.push(friendUid);
+		let div=document.getElementsByClassName(friendUid)[0];
+		document.getElementById('friendList').removeChild(div);
+		displayUserWhomCurrentUserSendRequestAlready(friendUid);
 	});
 	
 }
@@ -249,8 +350,9 @@ function LoadFriendList(){
 // ye log jinko request bheja h aur unhone accept nhi ki h
 function LoadSentFriendRequestList(){
 	database.ref("users/"+currentUser.uid+"/SentFriendRequestList")
-	.once('value').then((snapshot)=>{
+	.on('value',(snapshot)=>{
 		//if snapshot is not null
+		SentFriendRequestList=[]
 		if(snapshot!=null){
 		console.log(snapshot.val());
 		snapshot.forEach((childsnapshot)=>{

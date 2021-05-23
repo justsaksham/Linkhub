@@ -28,44 +28,15 @@ var firebaseConfig = {
 	  var auth=firebase.auth();
 	  var currentUser={};
 	  var database=firebase.database();
-//document.getElementById("foundType").addEventListener("change",ValueChecker);
-//
-//function ValueChecker(){
-//	if(document.getElementById("foundType").checked){
-//		console.log("checked");
-//		document.getElementById("dataType").disabled=true;
-//		document.getElementById("typefolders").disabled=false;
-//
-//	}
-//	else{
-//		document.getElementById("typefolders").disabled=true;
-//		document.getElementById("dataType").disabled=false;
-//		console.log("unchecked");
-//	}
-//}
 
 document.getElementById("btnStoreUserdata").onclick=function(){
-//1	
-	
-	
-	
-	
+//1		
 	let link=document.getElementById("link").value;
 	let folder=document.getElementById("typefolders").value;
-	//let foundType=document.getElementById("foundType").checked;
-	//let dataType=document.getElementById("dataType").value;
 	let metaData=document.getElementById("metaData").value;
 	let publicmode=document.getElementById("public").checked;
 	let privatemode=document.getElementById("private").checked;
-
 	let comment=document.getElementById("comment").value;
-//	let folder=null;
-//	if(foundType==true){
-//		folder=typefolders;
-//	}
-//	else{
-//		folder=dataType;
-//	}
 	let mode="";
 	if(publicmode){
 		mode="public";
@@ -75,7 +46,8 @@ document.getElementById("btnStoreUserdata").onclick=function(){
 	}
 	let date = new Date();
 	const timeStamp=date.getTime();
-	
+	let valid=performValidation(link,folder,metaData,mode,comment);
+	if(valid){
 	let obj={
 		ownerId:currentUser.uid,
 		link:link,
@@ -91,8 +63,69 @@ document.getElementById("btnStoreUserdata").onclick=function(){
 	const key=timeStamp+""+currentUser.uid
 	console.log(obj);
 	storePostData(obj,key,timeStamp);
+	}
 }
+function performValidation(link,folder,metaData,mode,comment){
+	let value=is_url(link);
+	console.log(value);
+	let Lvalid=false;
+	let Fvalid=false;
+	let Mvalid=false;
+	let Movalid=false;
+	let Cvalid=false;
+	
+	if(folder===''){
+		console.log('floder is empty please enter')
+		Fvalid=false;
+		document.getElementById("Fvalid").innerHTML="floder is empty please enter";
 
+	}
+	else{
+		document.getElementById("Fvalid").innerHTML="";
+
+	}
+	if(metaData===''){
+		console.log('MetaData is empty please enter')
+		Mvalid=false;
+		document.getElementById("Mvalid").innerHTML="Metadata is empty please enter";
+	}
+	else{
+		console.log('MetaData is empty please enter'+metaData);
+		document.getElementById("Mvalid").innerHTML="";
+
+	}
+	if(comment===''){
+		console.log('Description is empty please enter')
+		Cvalid=false;
+		document.getElementById("Cvalid").innerHTML="Description is empty please enter";
+
+	}
+	else{
+		document.getElementById("Cvalid").innerHTML="";
+		
+	}
+	if(value){
+		Lvalid= true;
+		document.getElementById("Lvalid").innerHTML="";
+	}
+	else{
+		Lvalid= false;
+		document.getElementById("Lvalid").innerHTML="Please enter valid mail";
+	}
+	return (Fvalid && Lvalid && Cvalid && Mvalid);
+}
+function is_url(str)
+{
+  regexp =  /^(http[s]?:\/\/(www\.)?|ftp:\/\/(www\.)?|www\.){1}([0-9A-Za-z-\.@:%_\+~#=]+)+((\.[a-zA-Z]{2,3})+)(\/(.)*)?(\?(.)*)?/g
+        if (regexp.test(str))
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
+}
 
 function storePostData(obj,key,timeStamp){
 	//2

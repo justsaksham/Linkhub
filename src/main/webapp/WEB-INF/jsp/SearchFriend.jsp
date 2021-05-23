@@ -10,14 +10,22 @@
  <input type="text" id="inputSearchFriend" name="inputSearchFriend"/>
  <Button id="btnSearchFriend" >Search</Button>  
  
- 
- <div class="friendList">
+ <div id="AlreadySentFriendRequestList">
+ </div>
+ <div id="friendList">
  
  </div>
  
   
 </body>
-
+<style>
+.AlreadySentRequest{
+background:red;
+}
+.friend{
+background:green;
+}
+</style>
 <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>

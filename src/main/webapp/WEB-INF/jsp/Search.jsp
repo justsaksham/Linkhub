@@ -3,6 +3,11 @@
 <head>
 	<title></title>
 </head>
+<style>
+.post{
+background:red;
+}
+</style>
 <body>
 search on the basis of mode<br>
 <input type="radio" name="mode" id="private">Private<br>
@@ -36,6 +41,9 @@ MetaData:<br>
   </datalist>
 
 <button id="btnSearchSubmit">Search By Metadata</button>
+<div id='postList'>
+
+</div>
 </body>
  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>

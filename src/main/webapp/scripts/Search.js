@@ -5,6 +5,7 @@ var pub =document.getElementById("public");
 var btnSearchByMode=document.getElementById("btnSearchByMode");
 var btnSearchByFolder=document.getElementById("btnSearchByFolder");
 var btnSearchSubmit=document.getElementById("btnSearchSubmit");
+//Search by MetaData
 var metadata=[];
 var folderdata=[];
 var firebaseConfig = {
@@ -25,17 +26,13 @@ var firebaseConfig = {
   var database=firebase.database();
 console.log("heloo");
 document.getElementById("btnSearchSubmit").onclick=function(){
-	console.log("hello");
+	
 	let searchingTerm=UniqueName.value;
-	console.log("hello");
 
 	SearchRelatedData(searchingTerm);
-	console.log("hello");
+
 };
 function loadData(){
-//	console.log("hello");
-//	
-//	console.log(database);
 	database.ref("/users/"+currentUser.uid+"/folders")
 	.once("value").then((snapshot) => {
 		
@@ -57,6 +54,8 @@ function loadData(){
 function LoadMetadata(){
 	database.ref("/users/"+currentUser.uid+"/metadata")
 	.once("value").then((snapshot) => {
+		//document.getElementById("postList").innerHTML='';
+		
 		metadata=snapshot.val();
 		if(metadata!=null)
 			metadata=metadata.key;
@@ -97,6 +96,8 @@ function SearchRelatedData(searchingTerm){
 	if(isExist){
  firebase.database().ref('/users/'+userId+'/Search/' +searchingTerm).once('value').then((snapshot) => {
 	 if(snapshot!=null){
+		 document.getElementById("postList").innerHTML='';
+			
 	 var username = snapshot.val();
 	 snapshot.forEach(function(childsnapshot){
 		 let val=childsnapshot.val();
@@ -124,6 +125,8 @@ function getFolderdata(folderNameValue){
 	if(exists){
 		firebase.database().ref('/users/'+currentUser.uid+'/posts/' +folderNameValue).once('value').then((snapshot) => {
 			 if(snapshot!=null){
+				 document.getElementById("postList").innerHTML='';
+					
 			 var username = snapshot.val();
 			 snapshot.forEach(function(childsnapshot){
 				 let val=childsnapshot.val();
@@ -139,7 +142,9 @@ function getFolderdata(folderNameValue){
 function getPost(key){
 	database.ref("Post/"+key).once('value').then(function(snapshot){
 		//data based on metadata
-		console.log(snapshot.val());
+		let post=snapshot.val()
+		console.log(post);
+		DisplayPost(post);
 	});
 }
 btnSearchByMode.onclick=function(){
@@ -153,7 +158,9 @@ btnSearchByMode.onclick=function(){
 	}
 };
 function fetchAllPublicData(){
+	
 	database.ref("users/"+currentUser.uid+"/Public").once('value').then(function(snapshot){
+		document.getElementById("postList").innerHTML='';
 		snapshot.forEach(function(childsnapshot){
 			let postlink=childsnapshot.val();
 			getPost(postlink.key);
@@ -164,6 +171,9 @@ function fetchAllPublicData(){
 }
 function fetchAllPrivateData(){
 	database.ref("Private/"+currentUser.uid).once('value').then(function(snapshot){
+		document.getElementById("postList").innerHTML='';
+		
+		
 		snapshot.forEach(function(childsnapshot){
 			let postlink=childsnapshot.val();
 			//getPost(postlink.key);
@@ -196,3 +206,30 @@ try{
 	      console.log(err.message);
 	    //  console.log(firebase.auth());
 	  }
+function DisplayPost(post){
+	let div=templateForPost();
+	//div.getElementsByTagName('p')[0].innerHTML='ownerName';
+	div.getElementsByTagName('p')[1].innerHTML=post.Description;
+	div.getElementsByTagName('a')[0].innerHTML="click here to see";
+	div.getElementsByTagName('a')[0].setAttribute('href',post.link);
+	div.getElementsByTagName('a')[0].setAttribute('target',"_blank");
+	
+	document.getElementById("postList").appendChild(div);
+	  }
+function templateForPost(){
+	let div=document.createElement('div');
+	div.setAttribute('class','post');
+	let a=document.createElement('a');//for link
+	//let div2=document.createElement('div');//
+	let p=document.createElement('p');//desc
+	let p1=document.createElement('p');//ownerName
+	//let btn1=document.createElement('button');//redirects to link
+	let btn2=document.createElement('button');//share button
+	btn2.innerHTML="Share";
+	div.appendChild(p1);
+	div.appendChild(a);
+	div.appendChild(p);
+	//div.appendChild(btn2);
+	console.log(div);
+	return div;
+}

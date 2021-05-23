@@ -276,5 +276,9 @@ body{
      transform: translateY(-.3rem);
 
  }
+ .error{
+ color:red;
+ font-size: 14px;
+ }
  
   
