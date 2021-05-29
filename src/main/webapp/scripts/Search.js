@@ -138,7 +138,21 @@ function getFolderdata(folderNameValue){
 });
 	}
 }
-
+btnGetSharedPost.onclick=function(){
+	fetchsharedPost();
+}
+var sharedPost=[]
+function fetchsharedPost(){
+	database.ref("users/"+currentUser.uid+"/Shared").on('value',function(snapshot){
+		if(snapshot.val()!=null){
+			document.getElementById("postList").innerHTML='';
+			sharedPost=snapshot.val();
+		}
+		for(let i=0;i<sharedPost.length;i++){
+			getPost(sharedPost[i]);
+		}
+	});
+}
 function getPost(key){
 	database.ref("Post/"+key).once('value').then(function(snapshot){
 		//data based on metadata

@@ -41,6 +41,9 @@ MetaData:<br>
   </datalist>
 
 <button id="btnSearchSubmit">Search By Metadata</button>
+<br>
+<button id="btnGetSharedPost">Shared Post</button>
+
 <div id='postList'>
 
 </div>

@@ -76,7 +76,7 @@ then((user) =>{
 	currentUser=user.user;
 	console.log("user is loged in as New User");
 	 document.getElementById("hiddenValue2").value=user.user.uid;
-	    document.getElementById("hiddenValue").value=user.user.uid;
+	   // document.getElementById("hiddenValue").value=user.user.uid;
 	   setUserDetail(user.user,userDetail);
 	   WriteUserData(user.user,userDetail);
      console.log("user is created");
@@ -96,7 +96,7 @@ let newuser = firebase.auth().currentUser;
 currentUser=newuser;
   if (newuser) {
     console.log("Existing user loged in");
-    document.getElementById("hiddenValue2").value=newuser.uid;
+    //document.getElementById("hiddenValue2").value=newuser.uid;
     document.getElementById("hiddenValue").value=newuser.uid;
     document.getElementById("form1").submit();
   } else {
@@ -181,9 +181,18 @@ var firebaseConfig = {
 		      currentUser=user;
 		      console.log('auth state changed');
 		      console.log('auth state changed'); 
-		document.getElementById("hiddenValue2").value=currentUser.uid;
-		document.getElementById("hiddenValue").value=currentUser.uid;
-		submitForm("form1");
+let val1=document.getElementById("hiddenValue2").value
+let val2=document.getElementById("hiddenValue").value
+console.log(val1)
+console.log(val2)
+if(val2===' ' && val1===' '){
+//	document.getElementById("hiddenValue2").value
+	document.getElementById("hiddenValue").value=currentUser.uid;
+	val2=document.getElementById("hiddenValue").value
+	console.log(val2);
+	submitForm("form1");
+}
+//		      
 		    } else {
 		      // No user is signed in.
 		    	currentUser={};

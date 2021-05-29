@@ -47,7 +47,36 @@ document.getElementById("btnStoreUserdata").onclick=function(){
 	let date = new Date();
 	const timeStamp=date.getTime();
 	let valid=performValidation(link,folder,metaData,mode,comment);
+	console.log(valid);
 	if(valid){
+		database.ref("users/"+currentUser.uid+"/profile").once('value').then((snapshot)=>{
+			if(snapshot.val()!=null){	
+			let val=snapshot.val();
+			console.log(val);
+	getOwnerName(link,folder,metaData,mode,comment,date,timeStamp,val.Name.toString());
+
+			}
+		});
+		
+//	let obj={
+//		ownerId:currentUser.uid,
+//		link:link,
+//		folder:folder,
+//		metaData:metaData,
+//		mode:mode,
+//		Description:comment,
+//		Postdate:date.toString(),
+//		timeStamp:timeStamp,
+//		email:currentUser.email
+//	};
+//	console.log(timeStamp+""+currentUser.uid);
+//	const key=timeStamp+""+currentUser.uid
+//	console.log(obj);
+//	storePostData(obj,key,timeStamp);
+	}
+}
+function getOwnerName(link,folder,metaData,mode,comment,date,timeStamp,Name){
+
 	let obj={
 		ownerId:currentUser.uid,
 		link:link,
@@ -57,13 +86,13 @@ document.getElementById("btnStoreUserdata").onclick=function(){
 		Description:comment,
 		Postdate:date.toString(),
 		timeStamp:timeStamp,
-		email:currentUser.email
+		email:currentUser.email,
+		Name:Name
 	};
 	console.log(timeStamp+""+currentUser.uid);
 	const key=timeStamp+""+currentUser.uid
 	console.log(obj);
 	storePostData(obj,key,timeStamp);
-	}
 }
 function performValidation(link,folder,metaData,mode,comment){
 	let value=is_url(link);
@@ -82,7 +111,7 @@ function performValidation(link,folder,metaData,mode,comment){
 	}
 	else{
 		document.getElementById("Fvalid").innerHTML="";
-
+		Fvalid=true;
 	}
 	if(metaData===''){
 		console.log('MetaData is empty please enter')
@@ -90,9 +119,23 @@ function performValidation(link,folder,metaData,mode,comment){
 		document.getElementById("Mvalid").innerHTML="Metadata is empty please enter";
 	}
 	else{
-		console.log('MetaData is empty please enter'+metaData);
-		document.getElementById("Mvalid").innerHTML="";
-
+		Mvalid=true;
+		for(let i=0;i<metadata.length;i++){
+		
+			if(metaData===metadata[i]){
+				Mvalid=false;
+				document.getElementById("Mvalid").innerHTML="Metadata Already exist please enter again";
+				console.log(metadata[i]===metaData);
+				break;
+			}
+		}
+		if(Mvalid){
+			//console.log('MetaData is empty please enter'+metaData);
+			document.getElementById("Mvalid").innerHTML="";
+		}
+		
+		
+		
 	}
 	if(comment===''){
 		console.log('Description is empty please enter')
@@ -102,7 +145,7 @@ function performValidation(link,folder,metaData,mode,comment){
 	}
 	else{
 		document.getElementById("Cvalid").innerHTML="";
-		
+		Cvalid=true;
 	}
 	if(value){
 		Lvalid= true;
@@ -231,9 +274,9 @@ function displayDataFolderList(){
 function LoadMetadata(){
 	database.ref("/users/"+currentUser.uid+"/metadata")
 	.once("value").then((snapshot) => {
-		metadata=snapshot.val();
-		if(metadata!=null)
-			metadata=metadata.key;
+		let value=snapshot.val();
+		if(value!=null)
+			metadata=value.key;
 		console.log(metadata);
 	});
 }
