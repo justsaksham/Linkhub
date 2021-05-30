@@ -44,7 +44,7 @@
         <li><a href="storeData.jsp">Store</a></li>
         <li><a href="Search.jsp">Search</a></li>
         <li><a href="friend.html">Friends</a></li>
-        <li><a href="helloWorld.html">profile</a></li>
+        <li><a href="profile.jsp">profile</a></li>
         <li><a href="#" id="logout">logout</a></li>
       </ul>
     </nav>

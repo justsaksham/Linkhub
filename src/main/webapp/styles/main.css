@@ -1,0 +1,297 @@
+/*# sourceMappingURL=main.css.map */
+:root {
+  /* Original Pallete */
+  /* --linkColor: white;
+  --hubColor: black;
+  --loginColor: #d1ff0d;
+  --backgroundColor: linear-gradient(to right bottom, rgba(126, 213, 111, 1),
+  rgba(84, 196, 121, 1),
+  rgba(40, 180, 133, 1) ); */
+  /* Dark Mode */
+  /* --linkColor: #b4a5a5;
+  --hubColor: #301b3f;
+  --backgroundColor: linear-gradient(
+    to right bottom,
+    #151515,
+    #1f1e1f,
+    #222022
+  );
+  --loginColor: #3c415c; */
+  /* New Pallete--2230 likes colorhunt.co */
+  --linkColor: #252525;
+  --hubColor: #6930c3;
+  --loginColor: #80ffdb;
+  --backgroundColor: linear-gradient(
+    to right bottom,
+    #64dfdf,
+    #54dddd,
+    #48dddd
+  );
+}
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+}
+#myVideo {
+  z-index: 1;
+  opacity: 0;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  animation: play 3s;
+  animation-iteration-count: 1;
+  animation-delay: 2.5s;
+  animation-fill-mode: forwards;
+}
+@keyframes play {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+
+.heading {
+  background-size: cover;
+  background-image: var(--backgroundColor);
+  position: relative;
+  height: 100vh;
+  background-color: #1a1a1a;
+  font-family: "Quicksand", sans-serif;
+  color: white;
+  display: block;
+}
+.content-box {
+  position: absolute;
+  top: 30%;
+  left: 42%;
+  text-align: center;
+  opacity: 1;
+  z-index: 2;
+}
+.head-background-box {
+  display: grid;
+  margin-bottom: 3rem;
+}
+.heading-main {
+  font-size: 7rem;
+  letter-spacing: 0.5rem;
+  word-spacing: 1rem;
+  margin-left: -7rem;
+  font-family: "Dela Gothic One", cursive;
+  color: var(--linkColor);
+  display: block;
+  animation: down 1s ease;
+  animation-delay: 0.7s;
+  animation-fill-mode: backwards;
+  backface-visibility: hidden;
+  z-index: 1;
+}
+@keyframes down {
+  0% {
+    opacity: 0;
+    transform: translateY(-2rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.hub {
+  display: inline-block;
+  font-family: "Roboto", sans-serif;
+  font-style: italic;
+  font-size: 20rem;
+  margin-top: -7rem;
+  margin-left: -2rem;
+  color: var(--hubColor);
+  animation: hub 2s ease;
+  animation-delay: 0.3s;
+  animation-fill-mode: backwards;
+  position: absolute;
+}
+@keyframes hub {
+  0% {
+    transform: scale(3.5) rotate(-180deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+.heading-sub {
+  display: block;
+  font-size: 1.5rem;
+  color: rgb(200, 255, 0);
+  animation: left-in 1s ease-in;
+  animation-delay: 0.7s;
+  animation-fill-mode: backwards;
+  backface-visibility: hidden;
+}
+@keyframes left-in {
+  0% {
+    transform: translateX(-10rem);
+    opacity: 0;
+  }
+  80% {
+    transform: translateX(+1rem);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.btn {
+  text-decoration: none;
+  padding: 0.38rem 2rem;
+  border-radius: 4rem;
+  backface-visibility: hidden;
+
+  font-weight: 550;
+  font-size: 80%;
+  font-style: bold;
+  font-family: "Montserrat", sans-serif;
+}
+.btn-login {
+  display: inline-block;
+  color: rgb(0, 0, 0);
+  background-color: var(--loginColor);
+  border: 0.15rem solid var(--loginColor);
+  margin-left: -3rem;
+  transition: all;
+  animation: log-up 0.5s ease-in;
+  animation-delay: 0.9s;
+  animation-fill-mode: backwards;
+}
+@keyframes log-up {
+  0% {
+    transform: translateY(+2.5rem);
+    opacity: 0;
+  }
+  80% {
+    transform: translateY(-0.5rem);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.btn-login:hover {
+  transition: all 0.3s ease;
+  transform: translateY(-0.3rem);
+}
+
+.slash {
+  display: inline-block;
+  margin-left: 1.5rem;
+  margin-right: -0.5rem;
+  margin-top: 0.1rem;
+  color: black;
+  font-weight: 700;
+  font-size: 2.8rem;
+  width: 0.2rem;
+  transition: all;
+  animation: slash 1s ease-in;
+  animation-fill-mode: both;
+  animation-delay: 0.7s;
+}
+@keyframes slash {
+  0% {
+    transform: rotate(0deg);
+    opacity: 0;
+  }
+
+  100% {
+    transform: rotate(388.5deg);
+    opacity: 1;
+  }
+}
+.btn-register {
+  display: inline-block;
+
+  color: white;
+  background-color: black;
+  border: 0.15rem solid black;
+
+  margin-right: -3.2rem;
+  margin-left: 2rem;
+  padding-left: 1rem;
+  padding-right: 3rem;
+  width: 8.7rem;
+  border-right: 2rem;
+  transition: all;
+  animation: reg-up 0.5s ease-in;
+  animation-delay: 1.2s;
+  animation-fill-mode: backwards;
+}
+@keyframes reg-up {
+  0% {
+    transform: translateY(+2.5rem);
+    opacity: 0;
+  }
+  80% {
+    transform: translateY(-0.5rem);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.btn-register:hover {
+  transition: all 0.5s ease;
+  transform: translateY(-0.3rem);
+}
+.arrow {
+  display: block;
+  margin-top: 12rem;
+  text-align: center;
+  opacity: 1;
+  z-index: 2;
+}
+.btn-arrow {
+  display: inline-block;
+  color: #d1ff0d;
+  width: 4rem;
+  height: 4rem;
+  background-image: #d1ff0d;
+  border-radius: 2rem;
+  animation: arrowup 0.5s ease-out;
+  animation-delay: 0.9s;
+  animation-fill-mode: backwards;
+  opacity: 1;
+  z-index: 2;
+}
+@keyframes arrowup {
+  0% {
+    transform: translateY(+2.5rem);
+    opacity: 0;
+  }
+  80% {
+    transform: translateY(-0.5rem);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

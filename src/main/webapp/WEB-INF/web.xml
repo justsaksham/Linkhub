@@ -3,7 +3,7 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd">
 <web-app> 
   <display-name>Archetype Created Web Application</display-name>
-  
+  <welcome-file-list><welcome-file>splash.html</welcome-file></welcome-file-list>
   <servlet>
   <servlet-name>abc</servlet-name>
   <servlet-class>servlets.LoginServlet</servlet-class>
@@ -49,6 +49,7 @@
     <servlet-name>Search</servlet-name>
     <url-pattern>/Search.jsp</url-pattern>
 </servlet-mapping>
+
 <servlet>
     <servlet-name>SearchFriend</servlet-name>
     <jsp-file>/WEB-INF/jsp/SearchFriend.jsp</jsp-file>
@@ -57,6 +58,22 @@
     <servlet-name>SearchFriend</servlet-name>
     <url-pattern>/searchFriend</url-pattern>
 </servlet-mapping>
+
+
+
+
+<servlet>
+    <servlet-name>Profile</servlet-name>
+    <jsp-file>/WEB-INF/jsp/profile.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+    <servlet-name>Profile</servlet-name>
+    <url-pattern>/profile.jsp</url-pattern>
+</servlet-mapping>
+
+
+
+
 
 
 <servlet>

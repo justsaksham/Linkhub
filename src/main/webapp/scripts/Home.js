@@ -20,13 +20,6 @@ function sharedPostCollector(){
 //  document.getElementsByTagName('head').item(0).appendChild(script);
 //  
 //}
-//include("scripts/MainJs.js");
-var elements = document.getElementsByClassName("column");
-var i;
-//List View
-for (i = 0; i < elements.length; i++) {
- elements[i].style.width = "100%";
-}
 document.getElementById("logout").onclick=function(){
 	firebase.auth().signOut().then(() => {
 		 document.getElementById("logoutForm").submit();
@@ -63,7 +56,8 @@ var firebaseConfig = {
 		      currentUser=user;
 		      console.log('auth state changed');
 		      console.log('auth state changed'); 
-		      loadPost();
+		     // loadPost();
+		      update();
 		      sharedPostCollector()
 		    } else {
 		      // No user is signed in.
@@ -87,12 +81,13 @@ function loadPost(){
 				if(child.val()!=null){
 					let post=child.val();
 				PostList.push(child.val());
-				appendInView(post);
+				//appendInView(post);
 				}
 			});
 		}
 		console.log(PostList)
 	});
+}
 	var flag=0;
 	var lastChild=null;
 function appendInView(post){
@@ -150,5 +145,14 @@ function postTemplate(post){
 		return div;
 }
 
+function update(){
+var PostAdded = firebase.database().ref('Post/');
+PostAdded.on('child_added', (data) => {
+	if(data.val()!=null){
+		let post=data.val();
+		appendInView(post);
+	}
+  });
 }
+
 
