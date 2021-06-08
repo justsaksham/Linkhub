@@ -26,6 +26,10 @@ var firebaseConfig = {
 		document.getElementById("friendList").innerHTML='';
 		document.getElementById("AlreadySentFriendRequestList").innerHTML='';
 		    let userInfo=[];
+//		     SearchResult=[];
+//			  friendList=[];
+//			  SentFriendRequestList=[];
+//			  PendingFriendRequestList=[];
 		firebase.database().ref('userSearch/'+value).once('value').then((snapshot) => {
 			  var username = snapshot.val() ;
 			  console.log(username);
@@ -94,7 +98,7 @@ var firebaseConfig = {
 					console.log("your request already sent and user haven't accept it");
 					displayUserWhomCurrentUserSendRequestAlready(userId);
 					flag3=true;
-					//break;
+					break;
 				}
 			}
 			
@@ -358,6 +362,7 @@ function LoadSentFriendRequestList(){
 		snapshot.forEach((childsnapshot)=>{
 			let result=childsnapshot.val();
 			console.log(result);
+			if(!SentFriendRequestList.includes(result.requestUid))
 			SentFriendRequestList.push(result.requestUid);
 			console.log(result.requestUid);
 		});

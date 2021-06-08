@@ -110,6 +110,7 @@ function postTemplate(post){
 		div.setAttribute('class','post');
 		let a=document.createElement('a');//for link
 		a.setAttribute("href",post.link);
+		a.setAttribute("target","_blank")
 		a.innerHTML="Click to see"
 		let div2=document.createElement('div');//carry date and owner name
 		div2.setAttribute('class','postHeader');
