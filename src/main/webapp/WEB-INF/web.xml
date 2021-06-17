@@ -3,7 +3,7 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd">
 <web-app> 
   <display-name>Archetype Created Web Application</display-name>
-  <welcome-file-list><welcome-file>splash.html</welcome-file></welcome-file-list>
+  <welcome-file-list><welcome-file>prototype.html</welcome-file></welcome-file-list>
   <servlet>
   <servlet-name>abc</servlet-name>
   <servlet-class>servlets.LoginServlet</servlet-class>
@@ -70,12 +70,6 @@
     <servlet-name>Profile</servlet-name>
     <url-pattern>/profile.jsp</url-pattern>
 </servlet-mapping>
-
-
-
-
-
-
 <servlet>
   	<servlet-name>LogoutServlet</servlet-name>
   	<display-name>LogoutServlet</display-name>

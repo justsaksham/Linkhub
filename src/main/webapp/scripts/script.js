@@ -17,11 +17,81 @@ document.querySelector('.img-btn').addEventListener('click', function()
 		document.querySelector('.cont').classList.toggle('s-signup')
 	}
 );
-
+function ValidateUserCred(){
+	let Name=$("#inputRegisterName").val();
+	let email=$("#inputRegisterEmail").val();
+	let pass=$("#inputRegisterPassword").val();
+	let conpass=$("#inputRegisterConfirmPassword").val();
+	let mailformat =  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	let inValid = /[\s.@]/;
+	let flag1=false;
+	let flag2=false;
+	let flag3=false;
+	let flag4=false;
+	
+	//console.log(email);
+	if(mailformat.test(email)){
+		flag1=true;
+		document.getElementById("RegisterEmailError").innerHTML="";
+			
+	}
+	else{
+		document.getElementById("RegisterEmailError").innerHTML="Please Enter Valid Email";
+	}
+	if(!inValid.test(Name) && !(Name==='')){
+		if(Name.length>=4){
+			document.getElementById("UserNameError").innerHTML="";
+			
+			flag2=true;
+				
+		}
+		else{
+			document.getElementById("UserNameError").innerHTML="Name should have atleast 4 char";
+			
+		}
+	}
+	else{
+		document.getElementById("UserNameError").innerHTML="Please Enter Name Without space , @ ,'.'";
+			
+	}
+	if(pass===''){
+		document.getElementById("RegisterPasswordError").innerHTML="Please Enter Password"	;
+	}
+	else{
+		if(pass.length>=6){
+		document.getElementById("RegisterPasswordError").innerHTML="";
+		flag3=true;
+		}
+		else{
+			document.getElementById("RegisterPasswordError").innerHTML="Password must contain atleast 6 symbol";
+				
+		}
+	}
+	if(conpass===''){
+		document.getElementById("RegisterConfirmPasswordError").innerHTML="Please Enter Confirm Password";
+	}
+	else{
+		if(pass===conpass){
+			flag4=true;
+			document.getElementById("RegisterConfirmPasswordError").innerHTML="";
+				
+		}
+		else{
+			document.getElementById("RegisterConfirmPasswordError").innerHTML="Password mismatch";
+				
+		}
+	}
+	console.log(flag1);
+	console.log(flag2);
+	return flag1 && flag2 && flag3 && flag4;
+	
+}
 //button click listeners
 $("#Sign_up").click(function(){
   console.log("Sign up with new User");
   //console.log(auth);
+  let valid=ValidateUserCred();
+  
   let userDetail={
   	Name:$("#inputRegisterName").val(),
   	Email:$("#inputRegisterEmail").val()
@@ -29,12 +99,12 @@ $("#Sign_up").click(function(){
   let email=$("#inputRegisterEmail").val();
   let password=$("#inputRegisterPassword").val();
   let confirmPassword=$("#inputRegisterConfirmPassword").val();
-  if(password==confirmPassword){
+  if(password==confirmPassword && valid){
   	CreateNewUser(email,password,userDetail);
   }
   else{
   	console.log("password mismatched");
-  	window.alert("password mismatched");
+  	//window.alert("password mismatched");
   }
 });
 //login_submit button listener
@@ -43,11 +113,35 @@ $("#login_submit").click(function(){
 console.log("User Details has been sent");
 let email=$("#inputEmail").val();
   let password=$("#inputPassword").val();
+  let valid=checkLoginCred();
+  if(valid)
 	logIn(email,password);
 	console.log(email+" "+password);
 });
 
-
+function checkLoginCred(){
+	let email=$("#inputEmail").val();
+	  let password=$("#inputPassword").val();
+	  let mailformat =  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	let flag1=false;
+	let flag2=false;
+	  if(mailformat.test(email)){
+		flag1=true;
+		document.getElementById("emailError").innerHTML="";
+	}
+	else{
+		document.getElementById("emailError").innerHTML="Please enter valid Email";
+	}
+	  if(password===''){
+		  document.getElementById("passwordError").innerHTML="Please enter Password";
+	  }
+	  else{
+		  flag2=true;
+		  document.getElementById("passwordError").innerHTML="";
+			
+	  }
+	  return flag1 && flag2;
+}
 
 
 
@@ -80,11 +174,13 @@ then((user) =>{
 	   setUserDetail(user.user,userDetail);
 	   WriteUserData(user.user,userDetail);
      console.log("user is created");
+     document.getElementById("signUpError").innerHTML="";
 			}).catch((error) => {
     var errorCode = error.code;
     var errorMessage = error.message;
     console.log(error.code);
     console.log(error.message);
+    document.getElementById("signUpError").innerHTML=errorMessage;
   });
 }
 function logIn(email,password){
@@ -99,6 +195,8 @@ currentUser=newuser;
     //document.getElementById("hiddenValue2").value=newuser.uid;
     document.getElementById("hiddenValue").value=newuser.uid;
     document.getElementById("form1").submit();
+    document.getElementById("loginError").innerHTML="";
+    
   } else {
     // No user is signed in.
     console.log("No user Loged In");
@@ -109,14 +207,16 @@ currentUser=newuser;
     let errorMessage = error.message;
     console.log(error.code);
     console.log(errorMessage);
-    let msg="Please Enter valid email and password";
+    let msg="Incorrect email or password";
     if(errorCode=="auth/invalid-email"){
     	
-    	document.getElementById("InvalidEmail").innerHTML=msg;
+    	//document.getElementById("InvalidEmail").innerHTML=msg;
+    	document.getElementById("loginError").innerHTML=msg;
     }
     else if(errorCode=="auth/wrong-password"){
     	
-    	document.getElementById("InvalidEmail").innerHTML=msg;
+    	//document.getElementById("InvalidEmail").innerHTML=msg;
+    	document.getElementById("loginError").innerHTML=msg;
     }
     		
   });

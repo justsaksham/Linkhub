@@ -1,0 +1,322 @@
+/*# sourceMappingURL=main.css.map */
+*,
+*::after,
+*::before{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+@font-face{
+    font-family: 'customfont';
+    src:url(../fonts/Gelion/Gelion/Gelion-SemiBold.ttf);
+  }
+@font-face {
+    font-family: 'roboto';
+    src: url(../fonts/Roboto/Roboto-Thin.ttf);
+}
+html{
+    font-size: 62.5%;
+}
+
+body{
+    overflow-y: auto;
+    overflow-x: hidden;
+    font-size: 1.6rem;
+}
+.entire-page{
+    position: relative;
+    width: 100vw;
+    height:100vh;
+    background-color: transparent;
+    font-family: 'Quicksand', sans-serif;
+    color: white;
+    display: block;
+}
+.entire-page::after {
+    --border-width: 3px;
+    position: fixed;
+    content: "";
+    background-image: linear-gradient(to right bottom,#55c57a,#7ed56f,#28b485);
+    top: 0;
+    left: 0;
+    height:100vh;
+    width:100vw;
+    z-index: -1;
+    background: linear-gradient(
+      60deg,
+      /* hsl(224, 85%, 66%),
+      hsl(269, 85%, 66%), */
+      #f25fd0,
+      hsl(359, 85%, 66%),
+      hsl(44, 85%, 66%)
+      /* hsl(89, 85%, 66%),
+      hsl(134, 85%, 66%),
+      hsl(179, 85%, 66%)  */
+    );
+    background-size: 300% 300%;
+    background-position: 0 50%;
+    border-radius: 0;
+    /* animation: moveGradient1 4s alternate infinite .7s; */
+  }
+@keyframes moveGradient1 {
+  50% {
+    background-position: 100% 50%;
+  }
+}
+/* .LinkHub-div{
+  position: fixed;
+  z-index: 2;
+} */
+.LinkHub{
+    cursor:pointer;
+    font-family: 'customfont',sans-serif;
+    color:white;
+    font-size: 7vh;
+    position:absolute;
+    top:7vh;
+    left:6vw;
+    font-weight: 1000;
+    animation: down .65s ease-out both .6s;
+}
+@keyframes down {
+    0%{
+        opacity: 0;
+        transform: translateY(-5vh);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.light{
+    color:white;
+    opacity:0.6;
+}
+.linkhub-active{
+  transition: all .5s ease-out;
+  transform: scale(1.01);
+}
+.linkhub-in-active{
+  transition: all .5s ease-out;
+  transform: scale(1);
+}
+
+.enter_name{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  font-family: 'Montserrat',sans-serif;
+  font-size: large;
+  position:absolute;
+  z-index: 2;
+  border-radius: 3px;
+  top: 6.5vh;
+  left:22%;
+  background-color:transparent;
+  opacity:1;
+  width: 60vw;
+  height:25vh;
+  animation: getin 0.8s ease-out 2s both;
+  }
+
+  .enter-label{
+   margin-right:.5vw;
+   font-size: 8vh;
+   animation: log-up .65s ease-out both .6s;
+  }
+
+  .input{
+    color:white;
+    padding: .7vw;
+    font-family: 'Montserrat',sans-serif;
+    font-weight:200;
+    font-size: 1.7vw;
+    letter-spacing: .06rem;
+    /* background-color: orange; */
+  height:7vh;
+  width:30vw;
+  border-color: transparent;
+  border-radius: 2vw;
+  /* background-color: #fbbedf; */
+  /* background-color: #f1c40f; */
+  background-color:#f9b311;
+  /* background-color:orange; */
+  animation: down .65s ease-out both .6s;
+}
+.input:hover{
+    cursor: pointer;
+}
+.input-active{
+    transition: all .8s ease;
+    width:32.6vw;
+}
+.input-in-active{
+    transition: all .8s ease;
+    width:30vw;
+}
+  .input::placeholder{
+    color:white;
+    opacity:.5;
+  }
+  .input:focus{
+    outline: none;
+  }
+  .btn{
+
+      cursor: pointer;
+    font-family: 'Montserrat',sans-serif;
+    font-size:1.4vw;
+    font-weight: 900;
+    display: flex;
+    text-decoration: none;
+    height: 7.1vh;
+    width:8vw;
+    border-radius: 2vw;
+    border:none;
+    text-align: justify;
+    align-items: center;
+    font-weight: 500;
+    justify-content: center;
+}
+.btn-search{
+    margin-left: .5vw;
+    color:white;
+    justify-content: center;
+    /* background-color: #aa2ee6; */
+    background-color: #A155B9;
+    /* border: .1vw solid #ff79cd;   */
+
+    transition: all;
+    animation: log-up .65s ease-out both .6s;
+  }
+  @keyframes log-up{
+      0%{
+          transform: translateY(+4.5vw);
+          opacity: 0;
+      }
+      100%{
+          transform: translateY(0);
+          opacity: 1;
+
+      }
+  }
+.search-active{
+    transition:all .8s ease;
+    width:10vw;
+    background-color: #6ecd9c;
+    color:#6a5fcc;
+}
+
+/* for search button out of hover effect */
+.search-in-active{
+    transition:all .8s ease;
+    width:8vw;
+    background-color: #A155B9;
+    color:white;
+}
+
+.results{
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  position: relative;
+  top:28vh;
+  left:17vw;
+  width: 70vw;
+  justify-content: stretch;
+}
+
+
+.alreadySentList{
+
+  width: 65vw;
+  background-color: transparent;
+}
+.sent{
+  height: 20vh;
+  font-size: 4vh;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+   border: .2vw solid #ff79cd;  /* search button shade-#a053c7, dark pink shade of background-#f33f87 */
+  background-color: #f33f87;
+  border-radius: 1vw;
+  margin-bottom: 1vh;
+}
+.color{
+  font-weight:400;
+  color:white;
+}
+
+.notSentList{
+  width: 65vw;
+  background-color:transparent;
+}
+.not-sent{
+  /* color:#6155a6; */
+  color:#A155B9;
+  height: 20vh;
+  font-size: 4vh;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  border: .2vw solid #ff79cd;  /* search button shade-#a053c7, dark pink shade of background-#f33f87 */
+  
+  /* background-color: #ffabe1; */
+  background-color: #fbbedf;
+  /* background-color: #fca3cc; */
+  /* background-color: #fdcfdf; */
+
+  border-radius: 1vw;
+  margin-bottom: 1vh;
+
+}
+.btn-add{
+  margin-top: 1vh;
+  width:10vw;
+  background-color: #f33f87;
+  color:white;
+}
+.btn-add-active{
+  transition: all .7s ease;
+  width: 12.6vw;
+  background-color: #6ecd9c;
+  color:#6a5fcc;
+}
+.btn-add-in-active{
+  transition: all .7s ease;
+  width: 10vw;
+}
+.btn-revoke{
+  margin-top: 1vh;
+  width: 15vw;
+  background-color: #fbbedf;
+  /* background-color: #efa8e4; */
+ color:#A155B9;
+}
+.btn-revoke-active{
+  transition: all .7s ease;
+  width: 18.6vw;
+  background-color: #6ecd9c;
+  color:#6a5fcc;
+}
+.btn-revoke-in-active{
+  transition: all .7s ease;
+  width: 15vw;
+}
+
+.pop{
+  animation: pop 0.5s ease-out both 0s;
+}
+@keyframes pop {
+  0%{
+    transform: translateY(20vh) scale(0);
+    opacity: 0;
+  }
+  100%{
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}

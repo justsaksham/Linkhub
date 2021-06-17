@@ -315,3 +315,16 @@ button{
   -webkit-transform:translate3d(0, 0, 0);
           transform:translate3d(0, 0, 0);
 }
+.error{
+	color:red;
+}
+.errorLogin{
+	color:red;
+	position:relative;
+	left:37%;
+}
+.errorSignUp{
+	color:red;
+	position:relative;
+	left:30%;
+}

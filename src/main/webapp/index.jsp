@@ -30,16 +30,19 @@ if(str!=null){
       <label>
         <span>Email Address</span>
         <input type="email" name="email" id="inputEmail" required>
+        <span id="emailError" class="error"></span>
       </label>
       
       <label>
         <span>Password</span>
         <input type="password" name="password" id="inputPassword" required>
+         <span id="passwordError" class="error"></span>
       </label>
       
       <input type="hidden" value=" " id="hiddenValue" name="hiddenValue1" required>
 
       <button class="submit" type="button" id="login_submit" form="form1">Sign In</button>
+      <span id="loginError" class="errorLogin"></span>
       </form>
      <a href="./ForgetPassword.html"> <p class="forgot-pass">Forgot Password ?</p>
       </a>
@@ -75,21 +78,27 @@ if(str!=null){
                 <label>
           <span>Name</span>
           <input type="text" id="inputRegisterName" required>
+           <span id="UserNameError" class="error"></span>
         </label>
         <label>
           <span>Email</span>
           <input type="email" id="inputRegisterEmail" required>
+           <span id="RegisterEmailError" class="error"></span>
         </label>
         <label>
           <span>Password</span>
           <input type="password" id="inputRegisterPassword" required>
+           <span id="RegisterPasswordError" class="error"></span>
         </label>
         <label>
           <span>Confirm Password</span>
           <input type="password" id="inputRegisterConfirmPassword" required>
+       	<span id="RegisterConfirmPasswordError" class="error"></span>
+        
         </label>
         <input type="hidden" value=" " id="hiddenValue2" name="HiddenValue">
       <button type="button" class="submit" id="Sign_up">Sign Up Now</button>
+      <span id="signUpError" class="errorSignUp"></span>
       </div>
     </div>
     </form>

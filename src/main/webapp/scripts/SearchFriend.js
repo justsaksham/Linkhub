@@ -125,7 +125,7 @@ var firebaseConfig = {
 				div.getElementsByTagName('Button')[0].setAttribute('id',userId);
 				div.getElementsByTagName('Button')[0].setAttribute('onclick',"revokeRequest(this)");
 				div.getElementsByTagName('Button')[0].innerHTML="REVOKE REQUEST"
-				div.setAttribute("class","AlreadySentRequest"+" "+userId);
+				div.setAttribute("class","AlreadySentRequest sent"+" "+userId);
 				//div.setAttribute("class",userId);
 				
 				div.getElementsByTagName('p')[0].innerHTML=name;
@@ -133,6 +133,7 @@ var firebaseConfig = {
 				console.log(div.getAttribute('class'))
 				console.log(div);
 			}
+			div.classList.add('pop');
 			document.getElementById("AlreadySentFriendRequestList").appendChild(div);
 		});
 		
@@ -141,8 +142,13 @@ var firebaseConfig = {
 	function CreateTemplateForAlreadySentRequest(){
 		let div=document.createElement('div');
 		let p1=document.createElement('p');
+		p1.classList.add('color');
 		let p2=document.createElement('p');
+		p2.classList.add('color');
 		let button=document.createElement('Button');
+		button.classList.add('btn','btn-revoke');
+		button.setAttribute('onmouseover','revoke_mouseover(this)');
+		button.setAttribute('onmouseout','revoke_mouseout(this)');
 		div.appendChild(p1);
 		div.appendChild(p2);
 		div.appendChild(button);
@@ -250,7 +256,7 @@ var firebaseConfig = {
 				div.getElementsByTagName('Button')[0].setAttribute('id',userId);
 				div.getElementsByTagName('Button')[0].setAttribute('onclick',"AddFriend(this)");
 				div.getElementsByTagName('Button')[0].innerHTML="add Friend"
-				div.setAttribute("class","friend"+" "+userId);
+				div.setAttribute("class","friend not-sent"+" "+userId);
 				//div.setAttribute("class",userId);
 				
 				div.getElementsByTagName('p')[0].innerHTML=name;
@@ -258,6 +264,7 @@ var firebaseConfig = {
 				console.log(div.getAttribute('class'))
 				console.log(div);
 			}
+			div.classList.add('pop');
 			document.getElementById("friendList").appendChild(div);
 		});
 	
@@ -268,8 +275,12 @@ var firebaseConfig = {
 	function CreateTemplateForSendingFriendRequest(){
 		let div=document.createElement('div');
 		let p1=document.createElement('p');
+		//p1.classList.add('');
 		let p2=document.createElement('p');
 		let button=document.createElement('Button');
+		button.classList.add('btn','btn-add');
+		button.setAttribute('onmouseover','add_mouseover(this)');
+		button.setAttribute('onmouseout','add_mouseout(this)');
 		div.appendChild(p1);
 		div.appendChild(p2);
 		div.appendChild(button);
@@ -394,3 +405,88 @@ function LoadFriendRequestList(){
 
 
 
+
+//front end only
+         //search btn  
+search=document.getElementsByClassName("btn-search")[0];
+//search button on hover
+search.addEventListener('mouseover',()=>{
+    search.classList.remove('search-in-active');
+    search.classList.add('search-active');
+});
+
+//search button out of hover
+search.addEventListener('mouseout',()=>{
+    search.classList.remove('search-active');
+    search.classList.add('search-in-active');
+});
+
+
+          // 'search/input' bar
+input=document.getElementsByClassName('input')[0];
+//for expanding search/input bar on hover
+input.addEventListener('mouseover',()=>{
+    input.classList.remove('input-in-active');
+    input.classList.add('input-active');
+});
+
+//for contracting search/input bar on hover
+input.addEventListener('mouseout',()=>{
+    input.classList.remove('input-active');
+    input.classList.add('input-in-active');
+});
+
+
+
+           //add button
+//for expanding add btn on hover
+function add_mouseover(ad)
+{
+    ad.classList.remove('btn-add-in-active');
+    ad.classList.add('btn-add-active');
+}
+
+//for contracting add btn on hover
+function add_mouseout(ad)
+{
+    ad.classList.remove('btn-add-active');
+    ad.classList.add('btn-add-in-active');
+}
+
+
+              
+          //revoke btn
+//for expanding revoke btn on hover
+function revoke_mouseover(revo)
+{
+    revo.classList.remove('btn-revoke-in-active');
+    revo.classList.add('btn-revoke-active');
+}
+
+//for contracting revoke btn on hover
+function revoke_mouseout(revo)
+{
+    revo.classList.remove('btn-revoke-active');
+    revo.classList.add('btn-revoke-in-active');
+}
+
+
+        //LinkHub logo
+//on clicking the logo redirected to landing page
+function landing_page(){
+    window.location.replace('./prototype.html');
+}
+
+//for zooming link hub logo
+function mouseover_LinkHub(logo)
+{
+    logo.classList.remove('linkhub-in-active');
+    logo.classList.add('linkhub-active');
+}
+
+//for contracting link hub logo
+function mouseout_LinkHub(logo)
+{
+    logo.classList.remove('linkhub-active');
+    logo.classList.add('linkhub-in-active');
+}
