@@ -2,6 +2,83 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<title>Friends</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
+<link href="styles/friend.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <div class="entire-page"> 
+  <div class='LinkHub-div' onmouseover='mouseover_LinkHub(this)' onmouseout='mouseout_LinkHub(this)'><h1 class="LinkHub" onclick="landing_page()">#Link<span class="light">Hub</span></h1></div>      
+<div class="content-box">        
+<div class="button-box">
+ <button id="showFriendRequest" class="btn btn-requests">Show Requests</button>
+ <h1 class="slash">|</h1>
+ <button id="showFriends" class="btn btn-friends">Show Friends</button>
+</div>
+
+<div class="list" id="AllList">
+
+    <div class="friendRequest" id="friendRequest">
+        <!--  
+        <div class="request pop">
+        <p class='color'>shubham</p>
+        <p class='color'>shubham97.sm@gmail.com</p>
+        <div class="btn-div">
+        <button class="btn btn-accept" onmouseover="accept_mouseover(this)" onmouseout="accept_mouseout(this)">Accept</button>
+        <button class="btn btn-reject" onmouseover="reject_mouseover(this)" onmouseout="reject_mouseout(this)">Reject</button>
+        </div>
+        </div>
+       <div class="request pop">
+       <p>shubham</p>
+       <p>shubham97.sm@gmail.com</p>
+       <div class="btn-div">
+       <button class="btn btn-accept" onmouseover="accept_mouseover(this)" onmouseout="accept_mouseout(this)">Accept</button>
+       <button class="btn btn-reject" onmouseover="reject_mouseover(this)" onmouseout="reject_mouseout(this)">Reject</button>
+       </div>
+       </div>
+       -->
+    </div>
+
+    <div class="friend" id="friendList">
+      <!--
+      <div class="already-friend pop">
+        <p>Saksham</p>
+        <p>Sakshamrocksgpt@gmail.com</p>
+        <button class="btn btn-unfriend"  onmouseover="unfriend_mouseover(this)" onmouseout="unfriend_mouseout(this)">un-friend</button>
+      </div>
+      <div class="already-friend pop">
+        <p>Saksham</p>
+        <p>Sakshamrocksgpt@gmail.com</p>
+        <button class="btn btn-unfriend" onmouseover="unfriend_mouseover(this)" onmouseout="unfriend_mouseout(this)">un-friend</button>
+      </div>
+      -->
+    </div>
+
+</div><!--end of AllList-->
+
+</div><!--end of content box-->
+</div><!--end of entire page-->
+</body>
+<style>
+</style>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+<script type="text/javascript" src="scripts/friend.js"></script>
+</html>
+
+
+
+
+
+
+<!--    old code  
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
@@ -28,3 +105,4 @@ background-color:red;
 <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
 <script type="text/javascript" src="scripts/friend.js"></script>
 </html>
+-->

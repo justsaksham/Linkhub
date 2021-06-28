@@ -62,14 +62,13 @@ address:<input type="text" id="address"/>
 <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
   
 <script type="text/javascript" src="scripts/profile.js"></script>
-</html> --%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+</html> --%><%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>profile</title>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400&display=swap" rel="stylesheet">
@@ -116,12 +115,16 @@ address:<input type="text" id="address"/>
 
            <div class="common-div">
             <p>New password <span style="color:white;">~</span></p>
-            <input type="password" id="newPassword"  class="input" placeholder=""/>
+            <input onclick="gone(this)" type="password" id="newPassword"  class="input" placeholder=""/>
+            <div class="validate" id="new-p-v"><span class="validate-span">Required</span></div>
+            <div class="validate" id="short-p"><span class="validate-span">Must_Be_Greater_Than_4_Characters</span></div>
            </div>
            
            <div class="common-div">
             <p>Confirm password <span style="color:white;">~</span></p>
-            <input type="password" id="confirmNewPassword"  class="input"/>
+            <input onclick="gone(this)" type="password" id="confirmNewPassword"  class="input"/>
+            <div class="validate" id="confirm-p-v"><span class="validate-span">Required</span></div>
+            <div class="validate" id="p-not-match"><span class="validate-span">Password_Unmatch</span></div>
            </div>
        
            <button id="btnChangePassword" class="btn btn-change">Change</button>
@@ -129,15 +132,15 @@ address:<input type="text" id="address"/>
       </div>
 
       <div id="changeDetails">
-        <div class="common-2-div"><p>First Name <span style="color:white;">~</span></p><input type="text" id="firstName" class="input"/></div>
+        <div class="common-2-div"><p>First Name <span style="color:white;">~</span></p><input onclick="gone(this)" type="text" id="firstName" class="input"/><div class="validate" id="first-n-v"><span class="validate-span">Required</span></div></div>
         
-        <div class="common-2-div"><p>Last Name <span style="color:white;">~</span></p><input type="text" id="lastName" class="input"/></div>
+        <div class="common-2-div"><p>Last Name <span style="color:white;">~</span></p><input onclick="gone(this)" type="text" id="lastName" class="input"/><div class="validate" id="last-n-v"><span class="validate-span">Required</span></div></div>
         
-        <div class="gender-div">  <p>Gender <span style="color:white;">~</span></p> <p class="radio-part"><input type="radio" id="male" name="Gender" value="male" class="radio-input"/><label for="male" class="radio-label"><span class="radio-circle"></span>Male</label><input type="radio" id="female" name="Gender" class="radio-input" value="female"/><label for="female" class="radio-label"><span class="radio-circle"></span>Female</label></p></div>
+        <div class="gender-div">  <p>Gender <span style="color:white;">~</span></p> <p class="radio-part"><input onclick="gone(this)" type="radio" id="male" name="Gender" value="male" class="radio-input"/><label for="male" class="radio-label"><span class="radio-circle"></span>Male</label><input onclick="gone(this)" type="radio" id="female" name="Gender" class="radio-input" value="female"/><label for="female" class="radio-label"><span class="radio-circle"></span>Female</label></p><div class="validate" id="gender-v"><span class="validate-span">Required</span></div></div>
         
-        <div class="common-2-div"><p>Contact Email <span style="color:white;">~</span></p><input type="email" id="email" autocomplete="off" placeholder="@gmail.com" class="input"/></div>
+        <div class="common-2-div"><p>Contact Email <span style="color:white;">~</span></p><input onclick="gone(this)" type="email" id="email" autocomplete="off" placeholder="@gmail.com" class="input"/><div class="validate" id="email-v"><span class="validate-span">Invalid_Email</span></div></div>
         
-        <div class="common-2-div"><p>Address <span style="color:white;">~</span></p><input type="text" id="address" class="input" /></div>
+        <div class="common-2-div"><p>Address <span style="color:white;">~</span></p><input onclick="gone(this)" type="text" id="address" class="input" /><div class="validate" id="address-v"><span class="validate-span">Required</span></div></div>
         
         <button id="btnUpdateDetails" class="btn btn-update">Update</button>
       </div>

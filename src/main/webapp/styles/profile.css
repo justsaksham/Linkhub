@@ -252,6 +252,10 @@ body{
     background-color: #fbbedf;
     color:#6f5ad3;
 }
+.btn-pass-active:active{
+    transition: width 0.05s ease;
+    width: 16vw;
+}
 .btn-pass-in-active{
     transition:all .7s ease;
     width:16vw;
@@ -286,6 +290,10 @@ body{
     width:17vw;
     background-color: #fbbedf;
     color:#6f5ad3;
+}
+.btn-detail-active:active{
+    transition: width .05s ease;
+    width: 14vw;
 }
 .btn-detail-in-active{
     transition:all .7s ease;
@@ -337,6 +345,10 @@ body{
     background-color: #fbbedf;
     color:#6f5ad3;
 }
+.btn-change-active:active{
+    transition: width .05s ease;
+    width: 8.5vw;
+}
 .btn-change-in-active{
     transition:all .7s ease;
     width: 8.5vw;
@@ -353,6 +365,10 @@ body{
     width:11.5vw;
     background-color: #fbbedf;
     color:#6f5ad3;
+}
+.btn-update-active:active{
+    transition: width .05s ease;
+    width: 8.5vw;
 }
 .btn-update-in-active{
     transition:all .7s ease;
@@ -513,3 +529,30 @@ body{
   .input:focus{
     outline: none;
   }
+  .validate{
+      display: inline-block;
+      text-align: center;
+      position:absolute;
+      left:98.5%;
+      color:white;
+      background-color: black;
+      border-radius: .55vw;
+      padding: .5vw;
+      font-size:3vh;
+      height:6vh;
+      opacity: 0;
+      transition: opacity 1s;
+  }
+  .validate::after{
+    content: '';  
+    position: absolute;
+    top:50%;
+    right:100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent #222 transparent transparent;
+  }
+.now-visible{
+    opacity:1;
+}

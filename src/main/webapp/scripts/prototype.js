@@ -82,11 +82,22 @@ arrow.addEventListener('mouseout',()=>{
     arr.classList.remove('arrow-symbol-active');
     arr.classList.add('arrow-symbol-in-active');
 });
+
+setTimeout(()=>{
+    arrow.classList.remove('arrow-div-in-active');
+    arrow.classList.add('arrow-div-active2');
+    
+    //arrow symbol on hover
+    arr.classList.remove('arrow-symbol-in-active');
+    arr.classList.add('arrow-symbol-active');
+},1900);
+
 setTimeout(Replace,5000)
 function Replace(){
 	console.log("hello");
 	window.location.replace("index.jsp");
 }
+
 
 
 

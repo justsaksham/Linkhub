@@ -18,6 +18,10 @@
     font-family: 'roboto';
     src: url(../fonts/Roboto/Roboto-Thin.ttf);
 }
+@font-face {
+    font-family: 'Lato';
+    src: url(../fonts/Lato/Lato-Bold.ttf);
+  }
 html{
     font-size: 62.5%;
 }
@@ -67,6 +71,7 @@ body{
     }
 }
 .light{
+    font-family: 'Ubuntu',sans-serif;
     color:white;
     opacity:0.6;
 }   
@@ -102,7 +107,7 @@ body{
     font-weight: 100;
     font-family: 'circular',sans-serif;
     letter-spacing: 1.2vw;
-    color: white;#40c0f3
+    color: white;
     transform: translateY(0);
 }
 .welcome{
@@ -120,7 +125,7 @@ body{
 .Link{
     position: relative;
 
-    font-family: 'circular',sans-serif;     
+    font-family: 'Ubuntu',sans-serif;     
     font-size: 5vw;
     font-weight: 900;
     top:-4.5vh; 
@@ -134,7 +139,7 @@ body{
     transform: translateY(0);
 }
 .Hub{
-    font-family: 'circular',sans-serif;     
+    font-family: 'Ubuntu',sans-serif;     
     /* font-size: 6vw; */
     font-weight: 900; 
 
@@ -253,7 +258,10 @@ body{
     background-color: #6ECD9C;
     color:#6f5ad3;
 }
-
+.active:active{
+    transition: width .05s ease;
+    width: 8.5vw;
+}
 /* for login button out of hover effect */
 .login-in-active{
     transition:all .7s ease;
@@ -318,6 +326,10 @@ body{
     background-color: #6ecd9c;
     color: #6f5ad3;
 }
+.register-active:active{
+    transition: width .05s ease;
+    width: 8.5vw;
+}
 /* for register button out of hover effect */
 .register-in-active{
     transition:all .7s ease;
@@ -349,11 +361,16 @@ body{
     
 }
 .arrow-div-active{  /* the circle around arrow expands*/
-    transition: all 1s ease 0s;
+    transition: all .75s ease 0s;
     width: 6vw; 
 }
+.arrow-div-active2{  /* the circle around arrow expands*/
+    transition: all 2s ease 0s;
+    transform: translateX(0vw);
+    width: 6.75vw; 
+}
 .arrow-div-in-active{ /* the circle around arrow contracts*/
-    transition: all 1s ease 0s;
+    transition: all .75s ease 0s;
     width: 4vw;
 }
 

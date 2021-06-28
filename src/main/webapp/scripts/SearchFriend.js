@@ -59,6 +59,7 @@ var firebaseConfig = {
 	function fetchUser(userInfo){
 		let userIdArray=[];
 		//holds all user id
+		let flag=0;
 		for(i=0;i<userInfo.length;i++){
 			let userData=userInfo[i].userinfo;
 			console.log(userData);
@@ -107,9 +108,21 @@ var firebaseConfig = {
 			}
 			if(userId!=currentUser.uid){
 				displaySearchResult(userId);
+				flag=1;
 			}
 		}
-		
+		if(flag==0)
+		{   
+			let temp=document.createElement('div');
+						temp.setAttribute('class','empty-part-div');
+						temp.classList.add("pop");
+						let p=document.createElement('p');
+						p.setAttribute('class','empty-part');
+						temp.appendChild(p);
+						p.innerHTML="Sorry! no such user exists";
+			document.getElementById("friendList").appendChild(temp);
+			console.log("no such user exists");
+		}		
 		}
 	
 	function displayUserWhomCurrentUserSendRequestAlready(userId){
