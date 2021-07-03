@@ -21,7 +21,7 @@ var firebaseConfig = {
 	btnSearchFriend.addEventListener('click',Searchfriend);
 	
 	function Searchfriend(){
-		let value=inputSearchFriend.value;
+		let value=inputSearchFriend.value.toLowerCase();
 		console.log("search"+value);
 		document.getElementById("friendList").innerHTML='';
 		document.getElementById("AlreadySentFriendRequestList").innerHTML='';

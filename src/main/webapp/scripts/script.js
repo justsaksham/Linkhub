@@ -93,7 +93,7 @@ $("#Sign_up").click(function(){
   let valid=ValidateUserCred();
   
   let userDetail={
-  	Name:$("#inputRegisterName").val(),
+  	Name:$("#inputRegisterName").val().toLowerCase(),
   	Email:$("#inputRegisterEmail").val()
   };
   let email=$("#inputRegisterEmail").val();

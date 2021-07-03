@@ -200,6 +200,7 @@ document.getElementById("logout").onclick=function(){
 
 btnSearchFriend.onclick=function(){
 	let yo=document.getElementById('inputSearchFriend').value;
+	//document.getElementById('inputSearchFriend').value=document.getElementById('inputSearchFriend').value.toLowerCase();
 	if(yo.length==0)
 	{
 		i=document.getElementById('friend-v');
