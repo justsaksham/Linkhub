@@ -168,6 +168,7 @@
 //}
 //
 //
+
 var inputSearchFriend=document.getElementById("inputSearchFriend");
 var btnSearchFriend=document.getElementById("btnSearchFriend");
 var PostList=[]

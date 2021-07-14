@@ -626,28 +626,34 @@ btnUpdateDetails.onclick=function(){
 	let option2=document.getElementById('female').checked;
 	//new code starts
 	let mailformat =  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	let flag =true;
 	if(FirstName.length==0){
         let i2=document.getElementById('first-n-v');
 		i2.classList.add('now-visible');
+		flag=false;
 	}
 	 if(LastName.length==0){
 		let i2=document.getElementById('last-n-v');
 		i2.classList.add('now-visible');
+		flag=false;
 	}
 	 if(!option1 && !option2){
 		let i2=document.getElementById('gender-v');
 		i2.classList.add('now-visible');
+		flag=false;
 	}
 	 if(!mailformat.test(email)){
 		let i2=document.getElementById('email-v');
 		i2.classList.add('now-visible');
+		flag=false;
 	}
 	 if(address.length==0)
 	{
 		let i2=document.getElementById('address-v');
 		i2.classList.add('now-visible');
+		flag=false;
 	}
-	else{
+	else if(flag){
 	//new code ends
 	console.log(option1);
 	console.log(option2);

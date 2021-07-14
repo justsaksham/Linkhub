@@ -62,7 +62,7 @@
                 for="private" class="radio-label"><span class="radio-circle"></span>private</label>
             </div>
             <div class="descr-div">
-              <div><label class="desc-label">Discription</label></div>
+              <div><label class="desc-label">Description</label></div>
               <div><textarea onclick="gone(this)" name="comment" id="comment" form="storeUserData" class="textarea" placeholder="provide a description"></textarea><div class="validate" id="desc-v"><span class="validate-span">Required</span></div></div>
             </div>
             <input id="btnStoreUserdata" type="button" value="STORE" class="btn btn-store">

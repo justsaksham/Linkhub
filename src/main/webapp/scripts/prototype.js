@@ -25,18 +25,18 @@ register.addEventListener('mouseout',()=>{
     register.classList.add('register-in-active');
 });
 
-contact=document.getElementsByClassName("btn-contact")[0];
-//contact button on hover
-contact.addEventListener('mouseover',()=>{
-    contact.classList.remove('contact-in-active');
-    contact.classList.add('active');
-});
-
-//contact button out of hover
-contact.addEventListener('mouseout',()=>{
-    contact.classList.remove('active');
-    contact.classList.add('contact-in-active');
-});
+//contact=document.getElementsByClassName("btn-contact")[0];
+////contact button on hover
+//contact.addEventListener('mouseover',()=>{
+//    contact.classList.remove('contact-in-active');
+//    contact.classList.add('active');
+//});
+//
+////contact button out of hover
+//contact.addEventListener('mouseout',()=>{
+//    contact.classList.remove('active');
+//    contact.classList.add('contact-in-active');
+//});
 
 
 

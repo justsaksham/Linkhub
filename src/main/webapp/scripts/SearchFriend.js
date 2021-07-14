@@ -98,6 +98,7 @@ var firebaseConfig = {
 					console.log("userId is already in SentFriendRequestList"+" "+userId);
 					console.log("your request already sent and user haven't accept it");
 					displayUserWhomCurrentUserSendRequestAlready(userId);
+					flag=1;
 					flag3=true;
 					break;
 				}
