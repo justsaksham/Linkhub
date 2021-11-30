@@ -1,1 +1,1 @@
-web: java -jar target/LinkHubMvn.war --app LinkHubMvn
+web: java -jar target/LinkHubMvn.war --app linkhubsakshamshubham
